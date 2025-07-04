@@ -1,0 +1,39 @@
+﻿@page
+@model CLOUD.Pages.EnlacesUtilesModel
+@{
+    ViewData["Title"] = "Enlaces útiles";
+}
+<main class="enlaces">
+    <h2>Recursos y enlaces útiles</h2>
+    <ul>
+        <li><a href="https://bdescolar.mineduc.cl/" target="_blank">📚 Biblioteca Digital Escolar (Mineduc)</a></li>
+        <li><a href="https://bibliotecas-cra.cl/" target="_blank">📘 CRA - Bibliotecas Escolares</a></li>
+        <li><a href="https://www.colegiobulnes.cl/" target="_blank">🏫 Colegio Bulnes</a></li>
+        <li><a href="https://bdelatam.eduteka.org/" target="_blank">🌎 Biblioteca Digital Escolar Latinoamericana</a></li>
+        <li><a href="https://www.chileparaninos.gob.cl/" target="_blank">🎲 Chile para Niños - Biblioteca Nacional</a></li>
+    </ul>
+</main>
+<style>
+    .enlaces {
+        padding: 20px;
+    }
+
+    .enlaces ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .enlaces li {
+        margin-bottom: 15px;
+    }
+
+    .enlaces a {
+        text-decoration: none;
+        color: #00509d;
+        font-weight: bold;
+    }
+
+    .enlaces a:hover {
+        text-decoration: underline;
+    }
+</style>

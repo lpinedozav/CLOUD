@@ -1,0 +1,40 @@
+﻿@page
+@model CLOUD.Pages.PrestamosModel
+@{
+    ViewData["Title"] = "Listado de Préstamos";
+}
+
+<h2 style="text-align:center; margin-top:30px; color:#003366;">Listado de Préstamos</h2>
+
+<div style="max-width:900px;margin:0 auto;">
+    <table style="width:100%; border-collapse:collapse; background:white; border-radius:10px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.07);">
+        <thead style="background:#003366;color:white;">
+            <tr>
+                <th style="padding:10px;">ID</th>
+                <th style="padding:10px;">Usuario</th>
+                <th style="padding:10px;">Libro</th>
+                <th style="padding:10px;">Fecha Préstamo</th>
+                <th style="padding:10px;">Fecha Devolución</th>
+                <th style="padding:10px;">Devuelto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model.Prestamos)
+            {
+                <tr style="border-bottom:1px solid #eee;">
+                    <td style="padding:8px;text-align:center;">@p.IdPrestamo</td>
+                    <td style="padding:8px;">@p.RunUsuarioNavigation?.Nombre</td>
+                    <td style="padding:8px;">@p.IdLibroNavigation?.NombreLibro</td>
+                    <td style="padding:8px;">@p.FechaPrestamo.ToString("yyyy-MM-dd")</td>
+                    <td style="padding:8px;">@p.FechaDevolucion.ToString("yyyy-MM-dd")</td>
+                    <td style="padding:8px;text-align:center;">
+                        <span 
+                              style="padding:4px 12px; border-radius:16px; background:@((bool)p.Devuelto ? "#e8ffe8" : "#ffd8d8"); color:@((bool)p.Devuelto ? "#3c763d" : "#b94a48"); font-weight:600;">
+                            @((bool)p.Devuelto ? "Sí" : "No")
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
