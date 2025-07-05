@@ -419,6 +419,16 @@ footer {
     background-color: #005da3;
 }
 
-
+.error-box {
+    max-width: 600px;
+    margin: 15px auto;
+    padding: 12px;
+    background: #ffe5e5;
+    border: 1px solid #ff4d4d;
+    border-radius: 6px;
+    color: #a70000;
+    font-weight: bold;
+    text-align: center;
+}
 
 

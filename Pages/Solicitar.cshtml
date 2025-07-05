@@ -1,14 +1,12 @@
 ﻿@page
 @model CLOUD.Pages.SolicitarModel
-@{
-    ViewData["Title"] = "Solicitar libro";
-}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <h2 class="formulario-titulo">Registrar nuevo préstamo</h2>
 
 <form method="post" class="formulario-prestamo">
     <label for="run">RUN del usuario:</label>
-    <input type="text" asp-for="Run" required maxlength="10" pattern="\d{7,9}" />
+    <input type="text" asp-for="Run" required maxlength="10" />
 
     <label for="nombre">Nombre completo:</label>
     <input type="text" asp-for="NombreUsuario" required />
@@ -18,7 +16,9 @@
         <option value="">Selecciona un libro</option>
         @foreach (var libro in Model.LibrosDisponibles)
         {
-            <option value="@libro.IdLibro">@libro.IdLibro - @libro.NombreLibro (@libro.Autor)</option>
+            <option value="@libro.IdLibro">
+                @libro.IdLibro - @libro.NombreLibro (@libro.Autor)
+            </option>
         }
     </select>
 
@@ -30,3 +30,18 @@
 
     <button type="submit">📘 Registrar préstamo</button>
 </form>
+
+<!-- Aquí mostramos el error de RUN en un cuadro -->
+@{
+    var runErrors = ViewData.ModelState["Run"]?.Errors;
+    if (runErrors != null && runErrors.Count > 0)
+    {
+        <div class="error-box">
+            @runErrors[0].ErrorMessage
+        </div>
+    }
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

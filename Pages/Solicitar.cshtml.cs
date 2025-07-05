@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using CLOUD.Models; // Ajusta el namespace de tus modelos
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using CLOUD.Helper;
 
 namespace CLOUD.Pages
 {
@@ -34,6 +35,15 @@ namespace CLOUD.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
+            LibrosDisponibles = await _context.Libros
+            .Where(l => l.Disponible == true)
+            .ToListAsync();
+            var rut = new RUTHelper(Run);
+            if (!rut.IsValid)
+            {
+                ModelState.AddModelError("Run", "El RUN ingresado no es válido.");
+                return Page();
+            }
             // Buscar el usuario por RUN
             var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Run == Run);
 
