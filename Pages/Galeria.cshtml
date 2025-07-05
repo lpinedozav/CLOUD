@@ -2,43 +2,22 @@
 @model CLOUD.Pages.GaleriaModel
 @{
     ViewData["Title"] = "Galería";
-
 }
-<h2>Galería de la Biblioteca</h2>
+<section class="galeria-contenedor">
+    <h2 class="titulo-seccion">Galería de la Biblioteca</h2>
 
-<div class="galeria">
-    <div>
-        <img src="~/galeria/imagen1.jpg" alt="Cuenta cuentos">
-        <div class="galeria-caption">Actividad de cuenta cuentos</div>
+    <div class="galeria">
+        <div class="galeria-item">
+            <img src="~/galeria/imagen1.jpg" alt="Cuenta cuentos">
+            <div class="galeria-caption">Actividad de cuenta cuentos</div>
+        </div>
+        <div class="galeria-item">
+            <img src="~/galeria/imagen2.jpg" alt="Exposición de consolas antiguas">
+            <div class="galeria-caption">Exposición de Videojuegos</div>
+        </div>
+        <div class="galeria-item">
+            <img src="~/galeria/imagen3.jpg" alt="Nuevo Material">
+            <div class="galeria-caption">Nuevo Material en biblioteca</div>
+        </div>
     </div>
-    <div>
-        <img src="~/galeria/imagen2.jpg" alt="Exposición de consolas antiguas">
-        <div class="galeria-caption">Exposición de Videojuegos</div>
-    </div>
-    <div>
-        <img src="~/galeria/imagen3.jpg" alt="Nuevo Material">
-        <div class="galeria-caption">Nuevo Material en biblioteca</div>
-    </div>
-</div>
-<style>
-    .galeria {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 15px;
-        padding: 20px;
-    }
-
-        .galeria img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        }
-
-    .galeria-caption {
-        text-align: center;
-        font-size: 0.95rem;
-        margin-top: 5px;
-    }
-</style>
+</section>
