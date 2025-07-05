@@ -67,7 +67,7 @@ namespace CLOUD.Pages
                 libro.Disponible = false;
             }
             await _context.SaveChangesAsync();
-            return RedirectToPage("/Exito");
+            return RedirectToPage("/Exito", new { TipoOperacion = "prestamo" });
         }
 
     }

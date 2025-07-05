@@ -3,51 +3,40 @@
 @{
     ViewData["Title"] = "Devolver libro";
 }
+
 <main class="contenedor">
     <h2>Devolver libro</h2>
+    <form method="post">
+        <label for="id_libro">Ingrese el ID del libro:</label>
+        <input type="text" id="id_libro" name="IdLibro" value="@Model.IdLibro" required />
 
-    <label for="id_libro">Ingrese el ID del libro:</label>
-    <input type="text" id="id_libro" name="id_libro">
-    <input type="submit" value="Verificar préstamo" onclick="verificarPrestamo()">
-
-    <div id="resultado" class="info-prestamo" style="margin-top:20px;background:#f0f8ff;padding:10px;border-radius:6px;display:none;"></div>
-</main>
-<script>
-    function verificarPrestamo() {
-        const idLibro = document.getElementById('id_libro').value.trim();
-        if (idLibro === '') {
-            alert('Por favor, ingresa el ID del libro.');
-            return;
+        @if (!Model.MostrarResultado)
+        {
+            <input type="submit" name="accion" value="Verificar préstamo" style="margin-bottom:15px;" />
         }
-
-        fetch(`http://TU_IP_EC2/verificar_prestamo.php?id_libro=${idLibro}`)
-            .then(res => res.json())
-            .then(data => {
-                const div = document.getElementById('resultado');
-                if (!data.encontrado) {
-                    div.innerHTML = `<p><strong>${data.mensaje}</strong></p>`;
-                    div.style.display = 'block';
-                    return;
+        else
+        {
+            <div id="resultado" class="info-prestamo" style="display:block;">
+                @if (!Model.PrestamoEncontrado)
+                {
+                    <p><strong>@Model.Mensaje</strong></p>
+                    <input type="submit" name="accion" value="Verificar préstamo" />
                 }
+                else
+                {
+                    <p><strong>Libro:</strong> @Model.LibroNombre</p>
+                    <p><strong>Prestado a:</strong> @Model.UsuarioNombre</p>
+                    <p><strong>Fecha préstamo:</strong> @Model.FechaPrestamo?.ToString("yyyy-MM-dd")</p>
+                    <p><strong>Fecha devolución:</strong> @Model.FechaDevolucion?.ToString("yyyy-MM-dd")</p>
+                    <input type="submit" name="accion" value="Confirmar devolución" />
+                }
+            </div>
+        }
+    </form>
+</main>
 
-                div.innerHTML = `
-                    <p><strong>Libro:</strong> ${data.nombre_libro}</p>
-                    <p><strong>Prestado a:</strong> ${data.run_usuario}</p>
-                    <p><strong>Fecha préstamo:</strong> ${data.fecha_prestamo}</p>
-                    <p><strong>Fecha devolución:</strong> ${data.fecha_devolucion}</p>
-                    <form method="POST" action="http://TU_IP_EC2/devolver_libro.php">
-                        <input type="hidden" name="id_libro" value="${idLibro}">
-                        <input type="submit" value="Confirmar devolución">
-                    </form>
-                `;
-                div.style.display = 'block';
-            })
-            .catch(() => {
-                alert('Ocurrió un error al consultar el préstamo.');
-            });
-    }
-</script>
 <style>
+    /* Igual que tu css */
     .contenedor {
         max-width: 600px;
         margin: 20px auto;
@@ -87,6 +76,5 @@
         background: #f0f8ff;
         padding: 10px;
         border-radius: 6px;
-        display: none;
     }
 </style>

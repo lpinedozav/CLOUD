@@ -5,6 +5,8 @@ namespace CLOUD.Pages
 {
     public class ExitoModel : PageModel
     {
+        [BindProperty(SupportsGet = true)]
+        public string? TipoOperacion { get; set; }
         public void OnGet()
         {
         }

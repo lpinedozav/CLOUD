@@ -2,10 +2,15 @@
 @model CLOUD.Pages.ExitoModel
 @{
     ViewData["Title"] = "Operación exitosa";
+    var tipo = Model.TipoOperacion?.ToLower() ?? "";
+    var titulo = tipo == "devolucion" ? "¡Libro devuelto con éxito!" : "¡Préstamo registrado con éxito!";
+    var mensaje = tipo == "devolucion"
+        ? "La devolución del libro fue procesada correctamente."
+        : "El préstamo fue guardado correctamente.";
 }
 
 <div class="alert alert-success" role="alert" style="max-width:500px;margin:30px auto;padding:30px;">
-    <h2>¡Préstamo registrado con éxito!</h2>
-    <p>El préstamo fue guardado correctamente.</p>
+    <h2>@titulo</h2>
+    <p>@mensaje</p>
     <a href="/" class="btn btn-primary">Volver al inicio</a>
 </div>

@@ -11,8 +11,8 @@
         <thead style="background:#003366;color:white;">
             <tr>
                 <th style="padding:10px;">ID</th>
-                <th style="padding:10px;">Usuario</th>
                 <th style="padding:10px;">Libro</th>
+                <th style="padding:10px;">Usuario</th>
                 <th style="padding:10px;">Fecha Préstamo</th>
                 <th style="padding:10px;">Fecha Devolución</th>
                 <th style="padding:10px;">Devuelto</th>
@@ -21,13 +21,13 @@
         <tbody>
             @foreach (var p in Model.Prestamos)
             {
-                <tr style="border-bottom:1px solid #eee;">
-                    <td style="padding:8px;text-align:center;">@p.IdPrestamo</td>
-                    <td style="padding:8px;">@p.RunUsuarioNavigation?.Nombre</td>
-                    <td style="padding:8px;">@p.IdLibroNavigation?.NombreLibro</td>
-                    <td style="padding:8px;">@p.FechaPrestamo.ToString("yyyy-MM-dd")</td>
-                    <td style="padding:8px;">@p.FechaDevolucion.ToString("yyyy-MM-dd")</td>
-                    <td style="padding:8px;text-align:center;">
+                <tr style="border-bottom: 1px solid #eee; text-align: center; ">
+                    <td style="padding:10px;">@p.IdLibro</td>
+                    <td style="padding: 10px;">@p.IdLibroNavigation?.NombreLibro</td>
+                    <td style="padding: 10px;">@p.RunUsuarioNavigation?.Nombre</td>
+                    <td style="padding: 10px;">@p.FechaPrestamo.ToString("yyyy-MM-dd")</td>
+                    <td style="padding: 10px;">@p.FechaDevolucion.ToString("yyyy-MM-dd")</td>
+                    <td style="padding: 10px;">
                         <span 
                               style="padding:4px 12px; border-radius:16px; background:@((bool)p.Devuelto ? "#e8ffe8" : "#ffd8d8"); color:@((bool)p.Devuelto ? "#3c763d" : "#b94a48"); font-weight:600;">
                             @((bool)p.Devuelto ? "Sí" : "No")
