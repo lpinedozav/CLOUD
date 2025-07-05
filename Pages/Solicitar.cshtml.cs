@@ -27,6 +27,9 @@ namespace CLOUD.Pages
             LibrosDisponibles = await _context.Libros
                 .Where(l => l.Disponible == true) // Manejar el tipo nullable correctamente
                 .ToListAsync(); // Usar ToListAsync para trabajar con EF Core
+
+            FechaPrestamo = DateTime.Today;          // 2025-07-05, por ejemplo
+            FechaDevolucion = DateTime.Today.AddDays(14); // 2 semanas, si quieres
         }
 
         public async Task<IActionResult> OnPostAsync()
