@@ -5,76 +5,34 @@
 }
 
 <main class="contenedor">
-    <h2>Devolver libro</h2>
-    <form method="post">
-        <label for="id_libro">Ingrese el ID del libro:</label>
-        <input type="text" id="id_libro" name="IdLibro" value="@Model.IdLibro" required />
+    <h2 class="titulo">📘 Devolver libro</h2>
+    <form method="post" class="form-devolucion">
+        <div class="campo-formulario">
+            <label for="id_libro">Ingrese el ID del libro:</label>
+            <input type="text" id="id_libro" name="IdLibro" value="@Model.IdLibro" required />
+        </div>
 
         @if (!Model.MostrarResultado)
         {
-            <input type="submit" name="accion" value="Verificar préstamo" style="margin-bottom:15px;" />
+            <button type="submit" name="accion" value="Verificar préstamo" class="boton-accion">Verificar préstamo</button>
         }
         else
         {
-            <div id="resultado" class="info-prestamo" style="display:block;">
+            <div id="resultado" class="info-prestamo">
                 @if (!Model.PrestamoEncontrado)
                 {
-                    <p><strong>@Model.Mensaje</strong></p>
-                    <input type="submit" name="accion" value="Verificar préstamo" />
+                    <p class="mensaje-error"><strong>@Model.Mensaje</strong></p>
+                    <button type="submit" name="accion" value="Verificar préstamo" class="boton-accion">Verificar préstamo</button>
                 }
                 else
                 {
-                    <p><strong>Libro:</strong> @Model.LibroNombre</p>
-                    <p><strong>Prestado a:</strong> @Model.UsuarioNombre</p>
-                    <p><strong>Fecha préstamo:</strong> @Model.FechaPrestamo?.ToString("yyyy-MM-dd")</p>
-                    <p><strong>Fecha devolución:</strong> @Model.FechaDevolucion?.ToString("yyyy-MM-dd")</p>
-                    <input type="submit" name="accion" value="Confirmar devolución" />
+                    <p><strong>📖 Libro:</strong> @Model.LibroNombre</p>
+                    <p><strong>👤 Prestado a:</strong> @Model.UsuarioNombre</p>
+                    <p><strong>📅 Fecha préstamo:</strong> @Model.FechaPrestamo?.ToString("yyyy-MM-dd")</p>
+                    <p><strong>📅 Fecha devolución:</strong> @Model.FechaDevolucion?.ToString("yyyy-MM-dd")</p>
+                    <button type="submit" name="accion" value="Confirmar devolución" class="boton-confirmar">Confirmar devolución</button>
                 }
             </div>
         }
     </form>
 </main>
-
-<style>
-    /* Igual que tu css */
-    .contenedor {
-        max-width: 600px;
-        margin: 20px auto;
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    label {
-        font-weight: bold;
-        display: block;
-        margin-top: 15px;
-    }
-
-    input[type="text"], input[type="submit"] {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-    }
-
-    input[type="submit"] {
-        background-color: #0074cc;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
-
-        input[type="submit"]:hover {
-            background-color: #005da3;
-        }
-
-    .info-prestamo {
-        margin-top: 20px;
-        background: #f0f8ff;
-        padding: 10px;
-        border-radius: 6px;
-    }
-</style>

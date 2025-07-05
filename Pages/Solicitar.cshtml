@@ -6,7 +6,7 @@
 
 <h2 class="formulario-titulo">Registrar nuevo préstamo</h2>
 
-<form method="post">
+<form method="post" class="formulario-prestamo">
     <label for="run">RUN del usuario:</label>
     <input type="text" asp-for="Run" required maxlength="10" pattern="\d{7,9}" />
 
@@ -23,53 +23,10 @@
     </select>
 
     <label for="fecha_prestamo">Fecha del préstamo:</label>
-    <input type="date" asp-for="FechaPrestamo" required value="03/07/2025"/>
+    <input type="date" asp-for="FechaPrestamo" required />
 
     <label for="fecha_devolucion">Fecha de devolución:</label>
-    <input type="date" asp-for="FechaDevolucion" required value="03/07/2025" />
+    <input type="date" asp-for="FechaDevolucion" required />
 
-    <input type="submit" value="Registrar préstamo" />
+    <button type="submit">📘 Registrar préstamo</button>
 </form>
-
-<style>
-    form {
-        max-width: 600px;
-        margin: 20px auto;
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    label {
-        font-weight: bold;
-        display: block;
-        margin-top: 15px;
-    }
-
-    input, select {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-    }
-
-        input[type="submit"] {
-            background-color: #0074cc;
-            color: white;
-            margin-top: 20px;
-            border: none;
-            cursor: pointer;
-        }
-
-            input[type="submit"]:hover {
-                background-color: #005da3;
-            }
-
-    .formulario-titulo {
-        text-align: center;
-        margin-top: 30px;
-        color: #003366;
-    }
-</style>
